@@ -8,6 +8,7 @@ const Page = async ({params}) =>{
     const payload = await getPayload() ;
     let post = await payload.find({
         collection : "posts",
+        limit: 100,
         where: {
             id : {
                equals : postId 
@@ -28,7 +29,7 @@ const Page = async ({params}) =>{
     return (
         <div className='container mx-auto p-8 pb-20 sm:p-20'>
             <h1 className='text-5xl fond-bold mb-5 leading-normal text-center'>{data.title}</h1>
-            <SerializedRichText data= {data.content} />
+            <SerializedRichText className ="payload-richtext" data= {data.content} />
         </div>
     )
 }

@@ -23,7 +23,7 @@ const PostSection = ({ posts }) => {
           {posts.docs.map((post) => {
             return (
               <Link
-                href={`/posts/${post.id}`}
+                href={`/Blog/${post.id}`}
                 key={post.id}
                 className="group block"
               >
