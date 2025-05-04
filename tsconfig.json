@@ -19,8 +19,12 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "payload": ["node_modules/payload"],
-      "payload/*": ["node_modules/payload/*"]
+      "payload": [
+        "node_modules/payload"
+      ],
+      "payload/*": [
+        "node_modules/payload/*"
+      ]
     },
     "plugins": [
       {
