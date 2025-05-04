@@ -1,8 +1,8 @@
 "use client";
 
 import Head from 'next/head';
-import SubscriptionSection2 from '/Users/tusharpandole/payloadcmsblog/blogapplication/src/app/components/Subscriptionemailbox2';
-import SubscribeButton from '/Users/tusharpandole/payloadcmsblog/blogapplication/src/app/components/BuyButton';
+import SubscriptionSection2 from '../../components/Subscriptionemailbox2';
+import SubscribeButton from '../../components/BuyButton';
 
 // Utility to generate IDs from text for headings
 const generateIdFromText = (text) => {
