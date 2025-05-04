@@ -18,6 +18,13 @@ const PostSection = ({ posts }) => {
             Latest from <br />
             the blog
           </h2>
+          {/* View All Posts Link */}
+          <Link
+            href="/blogs"
+            className="mt-4 inline-block px-6 py-2 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-500 transition-colors duration-300"
+          >
+            View All Posts
+          </Link>
         </div>
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-12">
           {posts.docs.map((post) => {
@@ -31,10 +38,15 @@ const PostSection = ({ posts }) => {
                   <h3 className="text-2xl font-semibold text-light group-hover:text-purple-400 transition-colors mb-4">
                     {post.title}
                   </h3>
+                  <div>
+                    <time
+                      dateTime={new Date(post.createdAt).toISOString()}
+                      className="text-slate-200"
+                    >
+                      {formatDate(post.createdAt)}
+                    </time>
+                  </div>
                 </article>
-                <div>
-                  <time className="text-slate-200">{formatDate(post.createdAt)}</time>
-                </div>
               </Link>
             );
           })}
