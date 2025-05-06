@@ -25,6 +25,13 @@ const PostSection = ({ posts }) => {
           >
             View All Posts
           </Link>
+
+          <Link
+            href="/mainpage"
+            className="mt-4 inline-block px-6 py-2 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-500 transition-colors duration-300"
+          >
+            Fleek offical post
+          </Link>
         </div>
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-12">
           {posts.docs.map((post) => {
