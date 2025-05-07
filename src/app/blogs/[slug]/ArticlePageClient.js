@@ -237,12 +237,13 @@ export default function ArticlePageClient({ article }) {
     }
   };
 
-  const pageTitle = article.title ? `${article.title} | Your Blog Name` : 'Untitled Article | Your Blog Name';
-  const metaDescription = article.miniVlogDescription?.root?.children?.[0]?.children?.[0]?.text?.slice(0, 160) || 'Discover the best articles and insights on Your Blog Name.';
-  const metaKeywords = keywords.map(k => k.text).join(', ') || 'articles, blog, insights';
-  const canonicalUrl = `https://yourblog.com/articles/${generateIdFromText(article.title || 'untitled')}`;
+  const pageTitle = article.title ? `${article.title} | Fleek Blog` : 'Untitled Article | Fleek Blog';
+  const metaDescription = (article.miniVlogDescription?.root?.children?.[0]?.children?.[0]?.text || 'Discover the best articles and insights on Fleek Blog.').slice(0, 155) + '...';
+  const metaKeywords = keywords.map(k => k.text).join(', ') || 'articles, blog, insights, news, updates';
+  const canonicalUrl = `https://payload-cms-blog.vercel.app/blogs/${generateIdFromText(article.title || 'untitled')}`;
   const publishDate = article.date ? new Date(article.date).toISOString() : new Date().toISOString();
-  const featuredImage = article.image || 'https://yourblog.com/default-image.jpg';
+  const featuredImage = article.image || 'https://pub-c5505ce6d8bb49aeac6484258ff435ce.r2.dev/fleek%20logo.png';
+
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -251,15 +252,12 @@ export default function ArticlePageClient({ article }) {
     description: metaDescription,
     author: {
       '@type': 'Organization',
-      name: 'Your Blog Name',
+      name: 'Get Fleek',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Your Blog Name',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://yourblog.com/logo.png',
-      },
+      name: 'Get Fleek',
+      
     },
     datePublished: publishDate,
     dateModified: publishDate,
@@ -305,7 +303,7 @@ export default function ArticlePageClient({ article }) {
         {/* Main Content */}
         <div className="w-full lg:w-3/4">
           {/* Article Title */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-2 sm:mb-3">{article.title || 'Untitled'}</h1>
+          <h1 className="text-2xl mt-22 sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-2 sm:mb-3">{article.title || 'Untitled'}</h1>
 
           {/* Article Date */}
           <div className="flex items-center mb-4 sm:mb-6 text-gray-500">
@@ -379,7 +377,7 @@ export default function ArticlePageClient({ article }) {
 
         {/* Subscription Section */}
         <aside className="w-full lg:w-1/4">
-          <div className="lg:sticky lg:top-[120px] mt-6 lg:mt-0">
+          <div className="lg:sticky lg:top-[360px] mt-12 lg:mt-0">
             <SubscriptionSection2 />
             <div className="mt-3 sm:mt-4">
               <SubscribeButton />

@@ -5,9 +5,9 @@ import Link from 'next/link';
 const FeaturedCard = ({ title, description, date, image, slug }) => {
   return (
     <Link href={`/blogs/${slug}`} className="block">
-      <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-sm mb-6 overflow-hidden cursor-pointer hover:shadow-lg hover:bg-gray-50 transition-all duration-300">
+      <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-sm mb-20 overflow-hidden cursor-pointer hover:shadow-lg hover:bg-gray-50 transition-all duration-300">
         {/* Image container */}
-        <div className="w-full md:w-2/5 lg:w-1/3 h-64 md:h-auto relative">
+        <div className="w-full md:w-3/5 lg:w-1/3 h-64 md:h-auto relative">
           {image ? (
             <img
               src={image}
@@ -109,6 +109,73 @@ export default async function FeaturedWithRelated() {
   } catch (error) {
     console.error('Error fetching articles:', error);
   }
+  const pageTitle = "Featured and Related Articles | Fleek Blog";
+  const metaDescription = "Discover the latest featured articles and related content on Fleek Blog. Stay updated with insights, news, and more.";
+  const metaKeywords = "featured articles, related articles, blog, news, insights, Fleek Blog";
+  const canonicalUrl = "https://payload-cms-blog.vercel.app/blogs";
+  const featuredImage = featuredArticles[0]?.image || "https://pub-c5505ce6d8bb49aeac6484258ff435ce.r2.dev/fleek%20logo.png";
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: pageTitle,
+    description: metaDescription,
+    url: canonicalUrl,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Fleek Blog',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://pub-c5505ce6d8bb49aeac6484258ff435ce.r2.dev/fleek%20logo.png',
+        width: 600,
+        height: 60,
+      },
+    },
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://payload-cms-blog.vercel.app',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Featured and Related Articles',
+          item: canonicalUrl,
+        },
+      ],
+    },
+    mainEntity: [
+      ...featuredArticles.map((article, index) => ({
+        '@type': 'Article',
+        headline: article.title || 'Untitled',
+        description: article.miniTitle || 'No description available.',
+        datePublished: article.date ? new Date(article.date).toISOString() : new Date().toISOString(),
+        image: article.image || 'https://pub-c5505ce6d8bb49aeac6484258ff435ce.r2.dev/fleek%20logo.png',
+        url: `https://payload-cms-blog.vercel.app/blogs/${article.slug}`,
+        author: {
+          '@type': 'Organization',
+          name: 'Fleek Blog',
+        },
+        position: index + 1,
+      })),
+      ...relatedArticles.map((article, index) => ({
+        '@type': 'Article',
+        headline: article.title || 'Untitled',
+        datePublished: article.date ? new Date(article.date).toISOString() : new Date().toISOString(),
+        image: article.image || 'https://pub-c5505ce6d8bb49aeac6484258ff435ce.r2.dev/fleek%20logo.pn',
+        url: `https://payload-cms-blog.vercel.app/blogs/${article.slug}`,
+        author: {
+          '@type': 'Organization',
+          name: 'Fleek Blog',
+        },
+        position: index + featuredArticles.length + 1,
+      })),
+    ],
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-15 pt-[250px] sm:pt-[80px] lg:pt-[90px]">
