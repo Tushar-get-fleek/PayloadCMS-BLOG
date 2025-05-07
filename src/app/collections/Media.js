@@ -1,11 +1,11 @@
 export const Media = {
     slug: 'media',
     upload: {
-      staticDir: 'media', // Ensure this directory exists
       mimeTypes: ['image/*'],
+      disableLocalStorage: true,
     },
     access: {
-        read: () => true, // Allow public read access
+      read: () => true, // Allow public read access
     },
     fields: [
       {

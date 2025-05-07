@@ -1,4 +1,3 @@
-
 export const Articles = {
     slug: 'articles',
     fields: [
@@ -10,23 +9,24 @@ export const Articles = {
       {
         name: 'miniTitle',
         type: 'text',
-        
         admin: {
-            description: 'This is the mini description on the card of featured articles. and recently posted ',
-          },
+          description: 'This is the mini description on the card of featured articles and recently posted.',
+        },
       },
       {
         name: 'miniVlogDescription',
         type: 'richText',
         admin: {
-            description: 'This is the mini vlog description on the Dedicated blog page ',
-          },
+          description: 'This is the mini vlog description on the Dedicated blog page.',
+        },
       },
       {
         name: 'image',
-        type: 'upload',
-        relationTo: 'media',
+        type: 'text', // Changed from 'upload' to 'text'
         required: true,
+        admin: {
+          description: 'Enter the Cloudflare R2 URL of the image (e.g., https://pub-34f102bb65c80a685cfc5293b90ef8f7.r2.dev/image.jpg).',
+        },
       },
       {
         name: 'date',
@@ -41,7 +41,7 @@ export const Articles = {
       {
         name: 'category',
         type: 'select',
-        hasMany: true, // Allows multiple categories to be selected
+        hasMany: true,
         required: true,
         options: [
           'Featured This Month',
