@@ -157,11 +157,11 @@ export default async function RecentlyPosted() {
         {/* Breadcrumb Navigation */}
         <nav className="mb-6 sm:mb-8" aria-label="Breadcrumb">
           <ol className="flex space-x-2 text-sm sm:text-base text-gray-600">
-            <li>
+            {/* <li>
               <Link href="/" className="hover:text-gray-800">Home</Link>
-            </li>
-            <li>/</li>
-            <li className="text-gray-800">Recently Posted Articles</li>
+            </li> */}
+            {/* <li>/</li>
+            <li className="text-gray-800">Recently Posted Articles</li> */}
           </ol>
         </nav>
 
